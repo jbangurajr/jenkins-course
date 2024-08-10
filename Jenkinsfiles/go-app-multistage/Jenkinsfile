@@ -1,0 +1,19 @@
+pipeline {
+    agent any 
+
+    stages {
+        stage('Dev') { // The first stage of the pipeline called Dev
+            steps {
+                // Get some code from a GitHub repository
+                git 'https://github.com/jbangurajr/jenkins-go-webapp-sample'
+            }
+        }
+
+        stage('Dev') { // The second stage of the pipeline called Dev
+            steps {
+                // Get some code from a GitHub repository
+                git 'https://github.com/jbangurajr/jenkins-go-webapp-sample'
+            }
+        }
+    }
+}

@@ -1,0 +1,10 @@
+pipeline{ # Means that this is a pipeline
+    agent any # Means that this pipeline can run on any agent
+    stages{ # The stages of the pipeline
+        stage('Hello'){ # The first stage of the pipeline called Hello
+            steps{ # The steps of the stage Hello 
+                echo 'Hello World' # Print Hello World in the console
+            }
+        }
+    }
+}

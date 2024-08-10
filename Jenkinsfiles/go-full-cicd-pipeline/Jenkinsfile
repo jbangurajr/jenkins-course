@@ -1,0 +1,33 @@
+pipeline{
+    agent any
+
+    tools{ // Define the tools that will be used in the pipeline
+        go 'go-1.17' // Define the Go version that will be used in the pipeline 
+    } 
+    
+    environment{ // Define the environment variables that will be used in the pipeline
+        GO111MODULE = 'on' // This is a Go environment variable that enables the use of Go modules
+    }
+    
+    stages{
+        stage('Test'){ // Define the Test stage
+            steps{
+                git 'https://github.com/jbangurajr/jenkins-go-webapp-sample'
+                sh 'go test ./...' // Looks at current directory and runs all tests as well as tests in subdirectories
+            }
+        }
+    
+        stage('Build'){ // Define the Build stage
+            steps{
+                git 'https://github.com/jbangurajr/jenkins-go-webapp-sample'
+                sh 'go build .' // Build the Go application
+                }
+
+        stage('Run'){ // Define the Run stage
+            steps{
+                sh 'cd /var/lib/jenkins/workspace/go-full-pipeline && jenkins-go-webapp-simple &' // Run the Go application in the directory where the application was built 
+                }
+            }
+        }
+    }
+}
